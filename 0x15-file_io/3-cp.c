@@ -2,7 +2,7 @@
 #include < stdio.h>
 #include < stdlib>
 
-char *create_buffer(char*file);
+char *create_buffer(char *file);
 void close_file(int fd);
 
 /**
@@ -11,11 +11,11 @@ void close_file(int fd);
  *
  * Return: A pointer to the newly_allocated buffer.
  */
-char*create_bufferr(char*file)
+char *create_bufferr(char *file)
 {
-	char*buffer;
+	char *buffer;
 
-	buffer = malloc(sizeof(char)* 1024);
+	buffer = malloc(sizeof(char) * 1024);
 
 	if (buffer == NULL)
 	{
@@ -54,7 +54,7 @@ void close_file(int fd)
  * if file_from does not exist or cannot be read - exit code 98.
  * if file_to cannot be created or written to - exit code 100.
  */
-int main(int argc, char*argv[])
+int main(int argc, char *argv[])
 {
 	int from, to, r, w;
 	char *buffer;
@@ -68,10 +68,10 @@ int main(int argc, char*argv[])
 	buffer = create_buffer(argv[2]);
 	from = open(argv[1], O_RDONLY);
 	r = read(from, buffer, 1024);
-	to = open(argv[2], O_CREAT |O_WRONLY | O_TRUNC, 0664);
+	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	do{
-		if(from == -1 || r == -1)
+	do {
+		if (from == -1 || r == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
@@ -91,13 +91,13 @@ int main(int argc, char*argv[])
 		r = read(from, buffer, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
-	}while(r>0);
+	} while (r > 0);
 
 	free(buffer);
 	close_file(from);
 	close_file(to);
 
-	return(0);
+	return (0);
 }
 
 
