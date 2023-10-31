@@ -11,7 +11,7 @@ void close_file(int fd);
  *
  * Return: A pointer to the newly_allocated buffer.
  */
-char *create_bufferr(char *file)
+char *create_buffer(char *file)
 {
 	char *buffer;
 
