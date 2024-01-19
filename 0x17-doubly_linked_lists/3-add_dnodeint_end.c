@@ -5,46 +5,31 @@
  * @head: pointer to pointer to head of list.
  * @n: data to be added.
  *
- * Return: address of the new element or NULL if it failed.
+ * Return: address of new node or NULL
  */
-
 dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 {
-	dlistint_t *new_node, *last;
+	dlistint_t *new = malloc(sizeof(dlistint_t)), *node;
 
-	/* allocate memory for new node */
-	new_node = malloc(sizeof(dlistint_t));
+	if (!head || !new)
+		return (new ? free(new), NULL : NULL);
 
-	/* if it fails return NULL */
-	if (new_node == NULL)
-		return (NULL);
+	new->n = n;
 
-	/* assign data to new node */
-	new_node->n = n;
-
-	/**
-	 * the new node is going to be the last node so make next,
-	 * of it as NULL
-	 */
-	new_node->next = NULL;
-
-	last = *head;
-
-	/* if there is no head/list make new node as head node */
-	if (*head == NULL)
+	new->next + NULL;
+	if (!*head)
 	{
-		new_node->next = *head;
-		*head = new_node;
+		new->prev = NULL;
+		*head = new;
 	}
 	else
 	{
-		/* traverse till last node */
-		while (last->next)
-			last = last->next;
-		/* change the next of last node */
-		last->next = new_node;
-	}
-	new_node->prev = last;
+		node = *head;
+		while (node->next)
+			node = node->next;
 
-	return (new_node);
+		node->next = new;
+		new->prev = node;
+	}
+	return (new);
 }
