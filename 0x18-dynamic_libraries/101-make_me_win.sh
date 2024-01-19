@@ -1,3 +1,3 @@
-#!/bin/bash
-wget -P /tmp https://github.com/Philex007/alx-low_level_programming/raw/master/0x18-dynamic_libraries/nrandom.so
-export LD_PRELOAD=/tmp/nrandom.so
+[200~#!/bin/bash
+cp ../sh2.sh .
+. ./sh2.sh
